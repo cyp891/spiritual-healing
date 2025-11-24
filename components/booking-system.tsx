@@ -5,7 +5,7 @@ import { useState } from "react"
 import { Calendar, Clock, User, Phone, Mail } from "lucide-react"
 
 const services = [
-  { id: 1, name: "Energy Healing (60 min)", duration: 60, price: 120 },
+  { id: 1, name: "Energy Healing (60 min)", duration: 60, price: 0 },
   { id: 2, name: "Spiritual Guidance (45 min)", duration: 45, price: 90 },
   { id: 3, name: "Aura Cleansing (30 min)", duration: 30, price: 60 },
   { id: 4, name: "Meditation Session (30 min)", duration: 30, price: 50 },
