@@ -23,7 +23,7 @@ const services = [
     icon: Moon,
     name: "Meditation & Mindfulness",
     description: "Guided practices for deeper peace. Meditation sessions tailored to your needs.",
-    color: "text-blue-500",
+    
   },
 ]
 
