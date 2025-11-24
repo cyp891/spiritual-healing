@@ -21,7 +21,7 @@ export default function Header() {
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
             <span className="text-primary-foreground text-lg font-bold">✨</span>
           </div>
-          <h1 className="text-2xl font-bold text-primary">Spiritual Healing</h1>
+          <h1 className="text-2xl font-bold text-primary">Spiritual Healing From Kos</h1>
         </div>
 
         {/* Desktop Menu */}

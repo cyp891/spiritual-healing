@@ -10,7 +10,7 @@ export default function Footer() {
               <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground text-sm font-bold">✨</span>
               </div>
-              <h3 className="text-lg font-bold">Spiritual Healing</h3>
+              <h3 className="text-lg font-bold">Spiritual Healing From Kos</h3>
             </div>
             <p className="text-foreground/60 text-sm">Transformative energy work for mind, body, and soul.</p>
           </div>
