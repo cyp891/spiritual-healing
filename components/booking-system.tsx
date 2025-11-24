@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Calendar, Clock, User, Phone, Mail } from "lucide-react"
 
@@ -38,31 +37,60 @@ export default function BookingSystem() {
     notes: "",
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    setError("")
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Booking submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setStep(1)
-      setFormData({
-        service: "",
-        practitioner: "",
-        date: "",
-        time: "",
-        sessionType: "",
-        name: "",
-        email: "",
-        phone: "",
-        notes: "",
+    setIsLoading(true)
+    setError("")
+
+    try {
+      console.log("[v0] Submitting booking:", formData)
+      const response = await fetch("/api/send-booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-    }, 3000)
+
+      const result = await response.json()
+
+      if (result.success) {
+        console.log("[v0] Booking email sent successfully")
+        setSubmitted(true)
+        setTimeout(() => {
+          setSubmitted(false)
+          setStep(1)
+          setFormData({
+            service: "",
+            practitioner: "",
+            date: "",
+            time: "",
+            sessionType: "",
+            name: "",
+            email: "",
+            phone: "",
+            notes: "",
+          })
+        }, 4000)
+      } else {
+        console.error("[v0] Failed to send email:", result.message)
+        setError(result.message)
+      }
+    } catch (err) {
+      console.error("[v0] Error submitting booking:", err)
+      setError("Failed to submit booking. Please try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -79,13 +107,14 @@ export default function BookingSystem() {
           <div className="bg-green-500/20 border-2 border-green-500 rounded-xl p-8 text-center">
             <h3 className="text-2xl font-bold text-green-600 mb-2">Booking Confirmed! ✨</h3>
             <p className="text-foreground/80">
-              Thank you for booking. You'll receive a confirmation email shortly with session details and connection
-              information.
+              Thank you for booking. A confirmation email has been sent to <strong>{formData.email}</strong> with
+              session details and connection information.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="bg-background border-2 border-border rounded-xl p-8 space-y-6">
-            {/* Step Indicators */}
+            {error && <div className="bg-red-500/20 border-2 border-red-500 rounded-lg p-4 text-red-600">{error}</div>}
+
             <div className="flex justify-between mb-8">
               {[1, 2, 3].map((s) => (
                 <div
@@ -102,7 +131,6 @@ export default function BookingSystem() {
               ))}
             </div>
 
-            {/* Step 1: Service Selection */}
             {step === 1 && (
               <div className="space-y-4">
                 <label className="block">
@@ -147,7 +175,6 @@ export default function BookingSystem() {
               </div>
             )}
 
-            {/* Step 2: Session Details */}
             {step === 2 && (
               <div className="space-y-4">
                 <label className="block">
@@ -214,7 +241,6 @@ export default function BookingSystem() {
               </div>
             )}
 
-            {/* Step 3: Personal Information */}
             {step === 3 && (
               <div className="space-y-4">
                 <label className="block">
@@ -279,13 +305,13 @@ export default function BookingSystem() {
               </div>
             )}
 
-            {/* Navigation Buttons */}
             <div className="flex justify-between gap-4 pt-6">
               {step > 1 && (
                 <button
                   type="button"
                   onClick={() => setStep(step - 1)}
-                  className="flex-1 bg-muted text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-muted/80 transition-colors"
+                  disabled={isLoading}
+                  className="flex-1 bg-muted text-foreground px-6 py-3 rounded-lg font-semibold hover:bg-muted/80 transition-colors disabled:opacity-50"
                 >
                   Back
                 </button>
@@ -298,16 +324,18 @@ export default function BookingSystem() {
                     if (step === 2 && (!formData.date || !formData.time || !formData.sessionType)) return
                     setStep(step + 1)
                   }}
-                  className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                  disabled={isLoading}
+                  className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   Continue
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
+                  disabled={isLoading}
+                  className="flex-1 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  Confirm Booking
+                  {isLoading ? "Sending..." : "Confirm Booking"}
                 </button>
               )}
             </div>
