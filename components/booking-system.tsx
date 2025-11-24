@@ -12,9 +12,9 @@ const services = [
 ]
 
 const practitioners = [
-  { id: 1, name: "Maya Chen" },
-  { id: 2, name: "David Rodriguez" },
-  { id: 3, name: "Sophie Laurent" },
+  { id: 1, name: "Lena" },
+  { id: 2, name: "Lena Elena" },
+  { id: 3, name: "Elena" },
 ]
 
 const sessionTypes = [
@@ -147,7 +147,7 @@ export default function BookingSystem() {
                     <option value="">Choose a service...</option>
                     {services.map((s) => (
                       <option key={s.id} value={s.id}>
-                        {s.name} - ${s.price}
+                        {s.name} - €{s.price}
                       </option>
                     ))}
                   </select>
@@ -286,7 +286,7 @@ export default function BookingSystem() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    placeholder="+1 (555) 123-4567"
+                    placeholder="+30 (694) 123-4567"
                     className="w-full bg-input text-foreground border border-border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </label>

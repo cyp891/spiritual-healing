@@ -6,7 +6,7 @@ const contactMethods = [
     title: "Phone",
     description: "Direct phone sessions for real-time connection",
     action: "Call us",
-    value: "+1 (555) 123-4567",
+    value: "+30 (694) 123-4567",
   },
   {
     icon: MessageSquare,
@@ -80,7 +80,7 @@ export default function ContactSection() {
             href="#booking"
             className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
           >
-            Book Your First Session
+            Book Your First Session For Free
           </a>
         </div>
       </div>

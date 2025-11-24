@@ -33,9 +33,9 @@ const serviceNames: { [key: string]: string } = {
 }
 
 const practitionerNames: { [key: string]: string } = {
-  "1": "Maya Chen",
-  "2": "David Rodriguez",
-  "3": "Sophie Laurent",
+  "1": "Lena",
+  "2": "Lena Elena",
+  "3": "Elena",
 }
 
 const sessionTypeNames: { [key: string]: string } = {
