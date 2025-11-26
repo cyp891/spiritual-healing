@@ -12,7 +12,7 @@ const practitioners = [
     name: "Lena Elena",
     specialty: "Spiritual Guide & Counselor",
     bio: "Elena guides seekers through transformative journeys with compassion and ancient wisdom.",
-    image: "/yoga.jpg",
+    image: "",
     certifications: ["Life Coach", "Spiritual Advisor"],
   },
   {
