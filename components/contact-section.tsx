@@ -6,28 +6,28 @@ const contactMethods = [
     title: "Phone",
     description: "Direct phone sessions for real-time connection",
     action: "Call us",
-    value: "+30 (694) 123-4567",
+    value: "+306985667480",
   },
   {
     icon: MessageSquare,
     title: "Viber",
     description: "Connect via Viber for a personal touch",
     action: "Send a message",
-    value: "viber://chat/?number=15551234567",
+    value: "viber://chat/?number=00306985667480",
   },
-  {
-    icon: Video,
-    title: "Zoom",
-    description: "Face-to-face video sessions",
-    action: "Schedule video call",
-    value: "zoom-booking",
-  },
+//   {
+//     icon: Video,
+//     title: "Zoom",
+//     description: "Face-to-face video sessions",
+//     action: "Schedule video call",
+//     value: "zoom-booking",
+//   },
   {
     icon: Mail,
     title: "Email",
     description: "Send us your questions and inquiries",
     action: "Email us",
-    value: "hello@spiritualhealing.com",
+    value: "elena@yahoo.de",
   },
 ]
 
@@ -42,7 +42,7 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contactMethods.map((method) => {
             const Icon = method.icon
             return (

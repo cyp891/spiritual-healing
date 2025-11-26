@@ -24,6 +24,11 @@ const services = [
     name: "Meditation & Mindfulness",
     description: "Guided practices for deeper peace. Meditation sessions tailored to your needs.",
     color: "text-blue-500",
+  },{
+    icon: Moon,
+    name: "Metaphorical cards",
+    description: "Can be a versatile and effective tool for enhancing communication, promoting self-expression, and supporting the therapeutic process.",
+    color: "text-blue-500",
   },
 ]
 
@@ -38,7 +43,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {services.map((service) => {
             const Icon = service.icon
             return (

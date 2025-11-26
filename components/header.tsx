@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import { LanguageSwitcher } from "./language-switcher"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -31,9 +32,10 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+          {/* <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
             Get Started
-          </button>
+          </button> */}
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Menu Button */}
@@ -55,9 +57,9 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <button className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+            {/* <button className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
               Get Started
-            </button>
+            </button> */}
           </div>
         </div>
       )}

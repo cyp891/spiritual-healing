@@ -8,6 +8,7 @@ import Testimonials from "@/components/testimonials"
 import ContactSection from "@/components/contact-section"
 import FAQ from "@/components/faq"
 import Footer from "@/components/footer"
+import Calendly from "../components/calendly"
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
       <Hero />
       <Services />
       <Practitioners />
-      <BookingSystem />
+      {/* <BookingSystem /> */}
+      <Calendly />
       <Testimonials />
       <FAQ />
       <ContactSection />

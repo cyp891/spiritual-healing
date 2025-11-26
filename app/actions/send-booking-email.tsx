@@ -1,6 +1,7 @@
 "use server"
 
 import nodemailer from "nodemailer"
+import SMTPTransport from "nodemailer/lib/smtp-transport"
 
 interface BookingData {
   service: string
@@ -17,13 +18,14 @@ interface BookingData {
 // Configure your email service - using a test mailer for now
 // In production, replace with your actual SMTP credentials
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || "smtp.mailtrap.io",
-  port: Number.parseInt(process.env.SMTP_PORT || "2525"),
+  host: process.env.SMTP_HOST,
+  port: Number.parseInt(process.env.SMTP_PORT || "587" ),
+  secure: process.env.NODE_ENV !== 'development',  //true
   auth: {
-    user: process.env.SMTP_USER || "test",
-    pass: process.env.SMTP_PASSWORD || "test",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
   },
-})
+} as SMTPTransport.Options)
 
 const serviceNames: { [key: string]: string } = {
   "1": "Energy Healing (60 min)",
