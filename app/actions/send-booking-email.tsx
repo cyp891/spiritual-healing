@@ -123,7 +123,7 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
 
     // Send email to client
     await transporter.sendMail({
-      from: process.env.SMTP_FROM || "noreply@spiritualhealing.com",
+      from: process.env.SMTP_FROM,
       to: bookingData.email,
       subject: `Booking Confirmation - ${serviceName}`,
       html: clientEmailHtml,
@@ -131,8 +131,8 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
 
     // Send notification to admin
     await transporter.sendMail({
-      from: process.env.SMTP_FROM || "noreply@spiritualhealing.com",
-      to: process.env.ADMIN_EMAIL || "admin@spiritualhealing.com",
+      from: process.env.SMTP_FROM,
+      to: process.env.ADMIN_EMAIL,
       subject: `New Booking: ${bookingData.name} - ${serviceName}`,
       html: adminEmailHtml,
     })

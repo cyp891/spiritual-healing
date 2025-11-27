@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Globe } from "lucide-react"
 import { LanguageSwitcher } from "./language-switcher"
 
 export default function Header() {
@@ -24,6 +24,10 @@ export default function Header() {
           </div>
           <h1 className="text-2xl font-bold text-primary">Spiritual Healing From Kos</h1>
         </div>
+        <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
+            <Globe size={16} className="text-accent" />
+            <span className="text-sm text-foreground/70">We speak: German, English, Russian, Ukrainian, Greek</span>
+          </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">

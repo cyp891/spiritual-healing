@@ -17,8 +17,8 @@ export default function Home() {
       <Hero />
       <Services />
       <Practitioners />
-      {/* <BookingSystem /> */}
-      <Calendly />
+      <BookingSystem />
+      {/* <Calendly /> */}
       <Testimonials />
       <FAQ />
       <ContactSection />
