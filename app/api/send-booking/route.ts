@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
+import nodemailer from "nodemailer"
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,6 +36,16 @@ export async function POST(request: NextRequest) {
       host: smtpConfig.host,
       port: smtpConfig.port,
       from: smtpConfig.from,
+    })
+
+    const transporter = nodemailer.createTransport({
+      host: smtpConfig.host,
+      port: smtpConfig.port,
+      secure: smtpConfig.port === 465, // true for 465, false for other ports
+      auth: {
+        user: smtpConfig.user,
+        pass: smtpConfig.password,
+      },
     })
 
     // Prepare email content for client
@@ -91,27 +102,22 @@ export async function POST(request: NextRequest) {
       </html>
     `
 
-    // Send emails using fetch (works in Next.js)
-    // This uses a simple SMTP relay or you can replace with your preferred service
-    const clientEmailPayload = {
-      to: bookingData.email,
+    await transporter.sendMail({
       from: smtpConfig.from,
+      to: bookingData.email,
       subject: `Booking Confirmed: ${bookingData.service}`,
       html: clientEmailHtml,
-    }
+    })
 
-    const adminEmailPayload = {
-      to: smtpConfig.adminEmail,
+    console.log("[v0] Email sent to client:", bookingData.email)
+
+    await transporter.sendMail({
       from: smtpConfig.from,
+      to: smtpConfig.adminEmail,
       subject: `New Booking: ${bookingData.name} - ${bookingData.service}`,
       html: adminEmailHtml,
-    }
+    })
 
-    console.log("[v0] Prepared email payloads successfully")
-
-    // For now, return success - in production, implement actual SMTP sending
-    // You can integrate with services like SendGrid, Mailgun, or Resend
-    console.log("[v0] Email sent to client:", bookingData.email)
     console.log("[v0] Email sent to admin:", smtpConfig.adminEmail)
 
     return NextResponse.json({
