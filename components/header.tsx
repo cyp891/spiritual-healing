@@ -22,7 +22,7 @@ export default function Header() {
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
             <span className="text-primary-foreground text-lg font-bold">✨</span>
           </div>
-          <h1 className="text-2xl font-bold text-primary">Spiritual Healing From Kos</h1>
+          <h1 className="text-2xl font-bold text-primary">Spiritual Healing</h1>
         </div>
         <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
             <Globe size={16} className="text-accent" />
@@ -39,7 +39,7 @@ export default function Header() {
           {/* <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
             Get Started
           </button> */}
-          <LanguageSwitcher />
+          {/* <LanguageSwitcher /> */}
         </div>
 
         {/* Mobile Menu Button */}
@@ -64,7 +64,11 @@ export default function Header() {
             {/* <button className="w-full bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
               Get Started
             </button> */}
-            <LanguageSwitcher />
+            {/* <LanguageSwitcher /> */}
+            <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
+            <Globe size={16} className="text-accent" />
+            <span className="text-sm text-foreground/70">We speak: German, English, Russian, Ukrainian, Greek</span>
+          </div>
           </div>
         </div>
       )}
