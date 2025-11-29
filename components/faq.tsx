@@ -6,9 +6,9 @@ import { ChevronDown } from "lucide-react"
 const faqs = [
   {
     id: 1,
-    question: "How do I choose between phone, Viber, and Zoom sessions?",
+    question: "How do I choose between phone, WhatsApp, Email and Zoom sessions?",
     answer:
-      "Each method offers unique benefits. Phone is great for focused conversations, Viber provides a more personal touch, and Zoom allows for video sessions with visual connection. Choose based on your comfort level and internet availability.",
+      "Each method offers unique benefits. Phone is great for focused conversations, WhatsApp provides a more personal touch, and Zoom allows for video sessions with visual connection. Choose based on your comfort level and internet availability.",
   },
   {
     id: 2,

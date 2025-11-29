@@ -1,56 +1,59 @@
-"use server"
+'use server';
 
-import nodemailer from "nodemailer"
-import SMTPTransport from "nodemailer/lib/smtp-transport"
+import nodemailer from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 interface BookingData {
-  service: string
-  practitioner: string
-  date: string
-  time: string
-  sessionType: string
-  name: string
-  email: string
-  phone: string
-  notes: string
+  service: string;
+  practitioner: string;
+  date: string;
+  time: string;
+  sessionType: string;
+  name: string;
+  email: string;
+  phone: string;
+  notes: string;
 }
 
 // Configure your email service - using a test mailer for now
 // In production, replace with your actual SMTP credentials
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
-  port: Number.parseInt(process.env.SMTP_PORT || "587" ),
-  secure: process.env.NODE_ENV !== 'development',  //true
+  port: Number.parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.NODE_ENV !== 'development', //true
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
   },
-} as SMTPTransport.Options)
+} as SMTPTransport.Options);
 
 const serviceNames: { [key: string]: string } = {
-  "1": "Energy Healing (60 min)",
-  "2": "Spiritual Guidance (45 min)",
-  "3": "Aura Cleansing (30 min)",
-  "4": "Meditation Session (30 min)",
-}
+  '1': 'Energy Healing (60 min)',
+  '2': 'Spiritual Guidance (45 min)',
+  '3': 'Aura Cleansing (30 min)',
+  '4': 'Meditation Session (30 min)',
+};
 
 const practitionerNames: { [key: string]: string } = {
-  "1": "Lena",
-  "2": "Lena Elena",
-  "3": "Elena",
-}
+  '1': 'Lena',
+  '2': 'Lena Elena',
+  '3': 'Elena',
+};
 
 const sessionTypeNames: { [key: string]: string } = {
-  phone: "Phone Call",
-  viber: "Viber",
-  zoom: "Zoom Video",
-}
+  phone: 'Phone Call',
+  whatsapp: 'WhatsApp',
+  email: 'Email',
+};
 
 export async function sendBookingConfirmation(bookingData: BookingData) {
   try {
-    const serviceName = serviceNames[bookingData.service] || bookingData.service
-    const practitionerName = practitionerNames[bookingData.practitioner] || bookingData.practitioner
-    const sessionType = sessionTypeNames[bookingData.sessionType] || bookingData.sessionType
+    const serviceName =
+      serviceNames[bookingData.service] || bookingData.service;
+    const practitionerName =
+      practitionerNames[bookingData.practitioner] || bookingData.practitioner;
+    const sessionType =
+      sessionTypeNames[bookingData.sessionType] || bookingData.sessionType;
 
     // Email to client
     const clientEmailHtml = `
@@ -78,20 +81,33 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
               <p>3. A healer will contact you at the scheduled time</p>
             </div>
             
-            ${bookingData.notes ? `<p><strong>Your Notes:</strong></p><p>${bookingData.notes}</p>` : ""}
+            ${
+              bookingData.notes
+                ? `<p><strong>Your Notes:</strong></p><p>${bookingData.notes}</p>`
+                : ''
+            }
+
+            <hr style="border-color: #D4A574; margin: 30px 0;" />
+      
+      <div style="font-size: 14px; color: #666;">
+        <p style="margin-bottom: 5px;"><strong>Spiritual Healing</strong></p>
+        <p style="margin-bottom: 5px;">Email: 33delena@gmail.com</p>
+        <p style="margin-bottom: 5px;">Phone: +306985667480</p>
+        <p>Bringing peace and healing to your life</p>
+      </div>
             
-            <p style="margin-top: 30px; color: #666; font-size: 12px;">
-              Questions? Contact us at +1 (555) 123-4567 or reply to this email.
-            </p>
+            // <p style="margin-top: 30px; color: #666; font-size: 12px;">
+            //   Questions? Contact us at +1 (555) 123-4567 or reply to this email.
+            // </p>
             
-            <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999;">
-              Spiritual Healing Center<br>
-              Nurturing your soul, one session at a time
-            </p>
+            // <p style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #999;">
+            //   Spiritual Healing Center<br>
+            //   Nurturing your soul, one session at a time
+            // </p>
           </div>
         </body>
       </html>
-    `
+    `;
 
     // Email to admin
     const adminEmailHtml = `
@@ -110,7 +126,9 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
               <p><strong>Date:</strong> ${bookingData.date}</p>
               <p><strong>Time:</strong> ${bookingData.time}</p>
               <p><strong>Communication Method:</strong> ${sessionType}</p>
-              <p><strong>Special Requests:</strong> ${bookingData.notes || "None"}</p>
+              <p><strong>Special Requests:</strong> ${
+                bookingData.notes || 'None'
+              }</p>
             </div>
             
             <p style="margin-top: 20px; color: #666; font-size: 12px;">
@@ -119,7 +137,7 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
           </div>
         </body>
       </html>
-    `
+    `;
 
     // Send email to client
     await transporter.sendMail({
@@ -127,7 +145,7 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
       to: bookingData.email,
       subject: `Booking Confirmation - ${serviceName}`,
       html: clientEmailHtml,
-    })
+    });
 
     // Send notification to admin
     await transporter.sendMail({
@@ -135,11 +153,11 @@ export async function sendBookingConfirmation(bookingData: BookingData) {
       to: process.env.ADMIN_EMAIL,
       subject: `New Booking: ${bookingData.name} - ${serviceName}`,
       html: adminEmailHtml,
-    })
+    });
 
-    return { success: true, message: "Booking confirmation sent successfully" }
+    return { success: true, message: 'Booking confirmation sent successfully' };
   } catch (error) {
-    console.error("Error sending booking email:", error)
-    return { success: false, message: "Failed to send booking confirmation" }
+    console.error('Error sending booking email:', error);
+    return { success: false, message: 'Failed to send booking confirmation' };
   }
 }

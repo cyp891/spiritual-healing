@@ -19,8 +19,9 @@ const practitioners = [
 
 const sessionTypes = [
   { id: "phone", name: "Phone Call", icon: "☎️" },
-  { id: "viber", name: "Viber", icon: "💬" },
-  { id: "zoom", name: "Zoom Video", icon: "📹" },
+  { id: "whatsapp", name: "WhatsAppp", icon: "call📞" },
+  { id: "email", name: "Email", icon: "✉️" },
+  //{ id: "zoom", name: "Zoom Video", icon: "📹" },
 ]
 
 export default function BookingSystem() {

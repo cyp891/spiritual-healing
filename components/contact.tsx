@@ -111,7 +111,7 @@ export default function Contact() {
           ))}
         </div>
 
-        <Card className="mt-16 bg-primary/10 border-primary/30">
+        {/* <Card className="mt-16 bg-primary/10 border-primary/30">
           <CardHeader>
             <CardTitle className="text-primary">Contact Form</CardTitle>
           </CardHeader>
@@ -171,7 +171,7 @@ export default function Contact() {
               )}
             </form>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </section>
   )
