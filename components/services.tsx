@@ -11,6 +11,7 @@ import {
 
 const services = [
   {
+    id:1,
     icon: Heart,
     name: 'Energy Healing',
     description:
@@ -18,6 +19,7 @@ const services = [
     color: 'text-red-500',
   },
   {
+    id: 2,
     title: 'Yoga',
     description:
       'From beginner to advanced, our yoga sessions improve flexibility, strength, and mental clarity.',
@@ -25,6 +27,7 @@ const services = [
     color: 'text-red-500',
   },
   {
+    id: 3,
     icon: Brain,
     name: 'Spiritual Guidance',
     description:
@@ -32,6 +35,7 @@ const services = [
     color: 'text-purple-500',
   },
   {
+    id: 4,
     icon: Sparkles,
     name: 'Aura Cleansing',
     description:
@@ -39,6 +43,7 @@ const services = [
     color: 'text-amber-500',
   },
   {
+    id: 5,
     icon: Moon,
     name: 'Meditation & Mindfulness',
     description:
@@ -46,6 +51,7 @@ const services = [
     color: 'text-blue-500',
   },
   {
+    id: 6,
     icon: Diamond,
     name: 'Metaphorical cards',
     description:
@@ -53,6 +59,7 @@ const services = [
     color: 'text-green-500',
   },
   {
+    id: 7,
     name: 'Spiritual Counseling',
     description:
       'Personalized guidance for spiritual growth and life transformation. Rule of life provides structure and space for our growing.',
@@ -60,6 +67,7 @@ const services = [
     color: 'text-blue-500',
   },
   {
+    id: 8,
     name: 'Wellness Retreats',
     description:
       'Immersive experiences combining yoga, meditation, and holistic wellness practices. Approach to mental & physical well-being',
@@ -85,7 +93,7 @@ export default function Services() {
             const Icon = service.icon;
             return (
               <div
-                key={service.name}
+                key={service.id}
                 className="bg-background p-6 rounded-xl border border-border hover:border-primary transition-all hover:shadow-lg"
               >
                 <Icon className={`${service.color} w-12 h-12 mb-4`} />
