@@ -1,35 +1,42 @@
-import { Phone, Mail, MessageSquare, Video } from "lucide-react"
+import { Phone, Mail, MessageSquare, MessageCircle, Video } from 'lucide-react';
 
 const contactMethods = [
   {
     icon: Phone,
-    title: "Phone",
-    description: "Direct phone sessions for real-time connection",
-    action: "Call us",
-    value: "+306985667480",
-  },
-  {
-    icon: MessageSquare,
-    title: "Viber",
-    description: "Connect via Viber for a personal touch",
-    action: "Send a message",
-    value: "viber://chat/?number=00306985667480",
+    title: 'Phone',
+    description: 'Direct phone sessions for real-time connection',
+    action: 'Call us',
+    value: '+306985667480',
   },
 //   {
-//     icon: Video,
-//     title: "Zoom",
-//     description: "Face-to-face video sessions",
-//     action: "Schedule video call",
-//     value: "zoom-booking",
+//     icon: MessageSquare,
+//     title: 'Viber',
+//     description: 'Connect via Viber for a personal touch',
+//     action: 'Send a message',
+//     value: 'viber://chat/?number=00306985667480',
 //   },
+  //   {
+  //     icon: Video,
+  //     title: "Zoom",
+  //     description: "Face-to-face video sessions",
+  //     action: "Schedule video call",
+  //     value: "zoom-booking",
+  //   },
+  {
+    icon: MessageCircle,
+    title: 'WhatsApp',
+    description: 'Message us anytime',
+    value: 'https://wa.me/495551234567',
+    action: 'https://wa.me/495551234567',
+  },
   {
     icon: Mail,
-    title: "Email",
-    description: "Send us your questions and inquiries",
-    action: "Email us",
-    value: "elena@yahoo.de",
+    title: 'Email',
+    description: 'Send us your questions and inquiries',
+    action: 'Email us',
+    value: 'elena@yahoo.de',
   },
-]
+];
 
 export default function ContactSection() {
   return (
@@ -38,13 +45,14 @@ export default function ContactSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Multiple ways to connect with us. Choose the communication channel that works best for you.
+            Multiple ways to connect with us. Choose the communication channel
+            that works best for you.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {contactMethods.map((method) => {
-            const Icon = method.icon
+            const Icon = method.icon;
             return (
               <div
                 key={method.title}
@@ -52,29 +60,36 @@ export default function ContactSection() {
               >
                 <Icon className="w-10 h-10 text-primary mb-4" />
                 <h3 className="text-xl font-semibold mb-2">{method.title}</h3>
-                <p className="text-foreground/70 text-sm mb-4">{method.description}</p>
+                <p className="text-foreground/70 text-sm mb-4">
+                  {method.description}
+                </p>
                 <a
                   href={
-                    method.value.startsWith("+")
+                    method.value.startsWith('+')
                       ? `tel:${method.value}`
-                      : method.value.includes("@")
-                        ? `mailto:${method.value}`
-                        : `viber://chat/?number=${method.value.replace(/\D/g, "")}`
+                      : method.value.includes('@')
+                      ? `mailto:${method.value}`
+                      : `viber://chat/?number=${method.value.replace(
+                          /\D/g,
+                          ''
+                        )}`
                   }
                   className="inline-block text-primary font-semibold hover:text-primary/80 transition-colors text-sm"
                 >
                   {method.action} →
                 </a>
               </div>
-            )
+            );
           })}
         </div>
 
         <div className="mt-16 bg-primary/10 border border-primary/20 rounded-xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Life?</h3>
+          <h3 className="text-2xl font-bold mb-4">
+            Ready to Transform Your Life?
+          </h3>
           <p className="text-foreground/80 mb-6">
-            Don't hesitate to reach out. Our team is ready to answer any questions and help you start your healing
-            journey.
+            Don't hesitate to reach out. Our team is ready to answer any
+            questions and help you start your healing journey.
           </p>
           <a
             href="#booking"
@@ -85,5 +100,5 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

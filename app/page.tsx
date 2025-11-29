@@ -9,6 +9,8 @@ import ContactSection from "@/components/contact-section"
 import FAQ from "@/components/faq"
 import Footer from "@/components/footer"
 import Calendly from "../components/calendly"
+import Language from "@/components/language/language"
+import Contact from "@/components/contact"
 
 export default function Home() {
   return (
@@ -17,11 +19,13 @@ export default function Home() {
       <Hero />
       <Services />
       <Practitioners />
+      <Language />
       <BookingSystem />
       {/* <Calendly /> */}
       <Testimonials />
       <FAQ />
-      <ContactSection />
+      <Contact />
+      {/* <ContactSection /> */}
       <Footer />
     </div>
   )

@@ -24,10 +24,10 @@ export default function Header() {
           </div>
           <h1 className="text-2xl font-bold text-primary">Spiritual Healing</h1>
         </div>
-        <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
+        {/* <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
             <Globe size={16} className="text-accent" />
             <span className="text-sm text-foreground/70">We speak: German, English, Russian, Ukrainian, Greek</span>
-          </div>
+          </div> */}
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
@@ -65,10 +65,10 @@ export default function Header() {
               Get Started
             </button> */}
             {/* <LanguageSwitcher /> */}
-            <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
+            {/* <div className="hidden lg:flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-lg border border-accent/20">
             <Globe size={16} className="text-accent" />
             <span className="text-sm text-foreground/70">We speak: German, English, Russian, Ukrainian, Greek</span>
-          </div>
+          </div> */}
           </div>
         </div>
       )}
